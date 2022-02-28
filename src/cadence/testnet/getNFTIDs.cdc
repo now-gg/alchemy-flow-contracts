@@ -44,6 +44,7 @@ import Kicks from 0xe861e151d3556d70
 import BarterYardPackNFT from 0x4300fc3a11778a9a
 import DayNFT from 0x0b7f00d13cd033bd
 import NFTContract from 0xed15722048e03cea
+import NowggNFT from 0x1a3e64df3663edd3
 
 
 pub fun main(ownerAddress: Address): {String: [UInt64]} {
@@ -244,6 +245,11 @@ pub fun main(ownerAddress: Address): {String: [UInt64]} {
     if let col = owner.getCapability(BarterYardPackNFT.CollectionPublicPath)
     .borrow<&{ BarterYardPackNFT.BarterYardPackNFTCollectionPublic }>() {
         ids["BarterYardPack"] = col.getIDs()
+    }
+
+    if let col = owner.getCapability(NowggNFT.CollectionPublicPath)
+    .borrow<&{NowggNFT.NowggNFTCollectionPublic}>() {
+        ids["NowggNFT"] = col.getIDs()
     }
 
     return ids

@@ -29,7 +29,11 @@ flow scripts execute getNFTs.cdc --args-json '[{ "type": "Address", "value": "0x
 DayNFT)
 echo "DayNFT"
 flow scripts execute getNFTs.cdc --args-json '[{ "type": "Address", "value": "0x1d1f11dcbae7f839" }, { "type": "Dictionary", "value": [{ "key": { "type": "String", "value": "DayNFT" }, "value": { "type": "Array", "value": [{ "type": "UInt64", "value": "1" }] } }] }]' --network testnet
-  ;; 
+  ;;
+NowggNFT)
+  echo "NowggNFT"
+  flow scripts execute getNFTs.cdc --args-json '[{ "type": "Address", "value": "0x797ccef3c80b8d89" }, { "type": "Dictionary", "value": [{ "key": { "type": "String", "value": "NowggNFT" }, "value": { "type": "Array", "value": [{ "type": "UInt64", "value": "15194" }] } }] }]' --network mainnet
+  ;;
 *)
   echo "Unknown contract"
   ;;

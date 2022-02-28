@@ -266,6 +266,11 @@ DGD_NFT)
   flow scripts execute getNFTIDs.cdc 0x329feb3ab062d289 --network mainnet
   ;;
 
+NowggNFT)
+  echo "NowggNFT"
+  flow scripts execute getNFTIDs.cdc 0x67f204260b5c9a6b --network mainnet
+  ;;
+
 *)
   echo "Unknown contract"
   ;;

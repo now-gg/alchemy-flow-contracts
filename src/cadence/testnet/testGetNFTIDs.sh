@@ -28,7 +28,11 @@ NFTContract)
 DayNFT)
   echo "DayNFT"
   flow scripts execute getNFTIDs.cdc 0x1d1f11dcbae7f839 --network testnet
-  ;;    
+  ;;
+NowggNFT)
+  echo "NowggNFT"
+  flow scripts execute getNFTIDs.cdc 0x797ccef3c80b8d89 --network mainnet
+  ;;   
 *)
   echo "Unknown contract"
   ;;

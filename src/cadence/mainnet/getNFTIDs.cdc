@@ -56,6 +56,8 @@ import The_Next_Cartel_NFT from 0x329feb3ab062d289
 import Atheletes_Unlimited_NFT from 0x329feb3ab062d289
 import Art_NFT from 0x329feb3ab062d289
 import DGD_NFT from 0x329feb3ab062d289
+import NowggNFT from 0x85b8bbf926dcddfa
+
 
 pub fun main(ownerAddress: Address): {String: [UInt64]} {
     let owner = getAccount(ownerAddress)
@@ -323,7 +325,12 @@ pub fun main(ownerAddress: Address): {String: [UInt64]} {
     if let col = owner.getCapability(DGD_NFT.CollectionPublicPath)
     .borrow<&{DGD_NFT.DGD_NFTCollectionPublic}>() {
         ids["DGD_NFT"] = col.getIDs()
-    }    
+    }
+
+    if let col = owner.getCapability(NowggNFT.CollectionPublicPath)
+    .borrow<&{NowggNFT.NowggNFTCollectionPublic}>() {
+        ids["NowggNFT"] = col.getIDs()
+    }
 
     return ids
 }

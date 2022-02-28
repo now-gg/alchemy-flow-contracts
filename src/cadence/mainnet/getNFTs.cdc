@@ -57,6 +57,7 @@ import The_Next_Cartel_NFT from 0x329feb3ab062d289
 import Atheletes_Unlimited_NFT from 0x329feb3ab062d289
 import Art_NFT from 0x329feb3ab062d289
 import DGD_NFT from 0x329feb3ab062d289
+import NowggNFT from 0x85b8bbf926dcddfa
 
 
 pub struct NFTCollection {
@@ -206,6 +207,7 @@ pub fun main(ownerAddress: Address, ids: {String:[UInt64]}): [NFTData?] {
                 case "Atheletes_Unlimited_NFT": d = getAthletesUnlimitedNFT(owner: owner, id: id)
                 case "Art_NFT": d = getArtNFT(owner: owner, id: id)
                 case "DGD_NFT": d = getDGDNFT(owner: owner, id: id)
+                case "NowggNFT": d = getNowggNFT(owner: owner, id: id)
 
                 default:
                     panic("adapter for NFT not found: ".concat(key))
@@ -2529,6 +2531,55 @@ pub fun getDGDNFT(owner: PublicAccount, id: UInt64): NFTData? {
             "max_editions": nftEditions!,
             "set_id": nft!.setId,
             "series_id": seriesId!
+        }
+    )
+}
+
+// https://flow-view-source.com/mainnet/account/0x85b8bbf926dcddfa/contract/NowggNFT
+pub fun getNowggNFT(owner: PublicAccount, id: UInt64): NFTData? {
+
+    let contract = NFTContract(
+        name: "NowggNFT",
+        address: 0x85b8bbf926dcddfa,
+        storage_path: "NowggNFT.CollectionStoragePath",
+        public_path: "NowggNFT.CollectionPublicPath",
+        public_collection_name: "NowggNFT.NowggNFTCollectionPublic",
+        external_domain: "https://nft.now.gg/"
+    )
+
+    let col = owner.getCapability(NowggNFT.CollectionPublicPath)
+        .borrow<&{NowggNFT.NowggNFTCollectionPublic}>()
+
+    if col == nil { return nil }
+
+    let nft = col!.borrowNowggNFT(id: id)
+    if nft == nil { return nil }
+
+    let metadata = nft!.getMetadata()
+    let nftTypeId = (metadata!["nftTypeId"]! as! String)
+
+    let externalViewUrl = "https://nft.now.gg/nft/".concat(nftTypeId)
+
+    return NFTData(
+        contract: contract,
+        id: nft!.id,
+        uuid: nft!.uuid,
+        title: metadata!["title"] as? String,
+        description: metadata!["description"] as? String,
+        external_domain_view_url: externalViewUrl,
+        token_uri: nil,
+        media: [
+            NFTMedia(uri: metadata!["displayUrl"]! as? String, mimetype: (metadata!["displayUrlMediaType"]! as? String)),
+            NFTMedia(uri: metadata!["contentUrl"]! as? String, mimetype: (metadata!["contentType"]! as? String))
+
+        ],
+        metadata: {
+            "client_name": metadata!["clientName"],
+            "nft_type_id": metadata!["nftTypeId"],
+            "creator_name": metadata!["creatorName"],
+            "client_id": metadata!["clientId"],
+            "max_count": metadata!["maxCount"],
+            "copy_number": metadata!["copyNumber"]
         }
     )
 }

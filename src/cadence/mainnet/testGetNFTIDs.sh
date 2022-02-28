@@ -271,6 +271,16 @@ NowggNFT)
   flow scripts execute getNFTIDs.cdc 0x67f204260b5c9a6b --network mainnet
   ;;
 
+GogoroCollectible)
+  echo "GogoroCollectible"
+  flow scripts execute getNFTIDs.cdc 0x0957f404ff7463ed --network mainnet
+  ;;
+
+YahooCollectible)
+  echo "YahooCollectible"
+  flow scripts execute getNFTIDs.cdc 0x0957f404ff7463ed --network mainnet
+  ;;
+
 *)
   echo "Unknown contract"
   ;;

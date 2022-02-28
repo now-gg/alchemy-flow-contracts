@@ -1723,7 +1723,7 @@ pub fun getNFTContract(owner: PublicAccount, id: UInt64): NFTData? {
     )
 }
 
-// https://flow-view-source.com/mainnet/account/0x85b8bbf926dcddfa/contract/NowggNFT
+// https://flow-view-source.com/testnet/account/0x1a3e64df3663edd3/contract/NowggNFT
 pub fun getNowggNFT(owner: PublicAccount, id: UInt64): NFTData? {
 
     let contract = NFTContract(
@@ -1732,7 +1732,7 @@ pub fun getNowggNFT(owner: PublicAccount, id: UInt64): NFTData? {
         storage_path: "NowggNFT.CollectionStoragePath",
         public_path: "NowggNFT.CollectionPublicPath",
         public_collection_name: "NowggNFT.NowggNFTCollectionPublic",
-        external_domain: "https://nft.now.gg/"
+        external_domain: "https://nft-engg.testngg.net/"
     )
 
     let col = owner.getCapability(NowggNFT.CollectionPublicPath)
@@ -1746,7 +1746,7 @@ pub fun getNowggNFT(owner: PublicAccount, id: UInt64): NFTData? {
     let metadata = nft!.getMetadata()
     let nftTypeId = (metadata!["nftTypeId"]! as! String)
 
-    let externalViewUrl = "https://nft.now.gg/nft/".concat(nftTypeId)
+    let externalViewUrl = "https://nft-engg.testngg.net/nft/".concat(nftTypeId)
 
     return NFTData(
         contract: contract,

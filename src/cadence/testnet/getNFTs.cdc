@@ -1808,7 +1808,7 @@ pub fun getYahooCollectibleNFT(owner: PublicAccount, id: UInt64): NFTData? {
 // https://flow-view-source.com/testnet/account/0x1a3e64df3663edd3/contract/NowggNFT
 pub fun getNowggNFT(owner: PublicAccount, id: UInt64): NFTData? {
 
-    let contract = NFTContract(
+    let contract = NFTContractData(
         name: "NowggNFT",
         address: 0x85b8bbf926dcddfa,
         storage_path: "NowggNFT.CollectionStoragePath",

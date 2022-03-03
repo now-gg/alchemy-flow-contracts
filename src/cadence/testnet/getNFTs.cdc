@@ -1824,24 +1824,24 @@ pub fun getNowggNFT(owner: PublicAccount, id: UInt64): NFTData? {
 
     let nft = col!.borrowNowggNFT(id: id)
     if nft == nil { return nil }
+    let nftInfo = nft!
 
-    let metadata = nft!.getMetadata()!
-    let nftTypeId = (metadata!["nftTypeId"]! as! String)
+    let metadata = nftInfo.getMetadata()!
+    let nftTypeId = (metadata["nftTypeId"]! as! String)
 
     let externalViewUrl = "https://nft-engg.testngg.net/nft/".concat(nftTypeId)
 
     return NFTData(
         contract: contract,
-        id: nft!.id,
-        uuid: nft!.uuid,
-        title: metadata["title"] as? String,
-        description: metadata["description"] as? String,
+        id: nftInfo.id,
+        uuid: nftInfo.uuid,
+        title: metadata["title"]! as? String,
+        description: metadata["description"]! as? String,
         external_domain_view_url: externalViewUrl,
         token_uri: nil,
         media: [
             NFTMedia(uri: metadata["displayUrl"]! as? String, mimetype: (metadata["displayUrlMediaType"]! as? String)),
             NFTMedia(uri: metadata["contentUrl"]! as? String, mimetype: (metadata["contentType"]! as? String))
-
         ],
         metadata: {
             "client_name": metadata["clientName"],

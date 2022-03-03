@@ -2639,17 +2639,19 @@ pub fun getNowggNFT(owner: PublicAccount, id: UInt64): NFTData? {
 
     if nft == nil { return nil }
 
-    let metadata = nft!.getMetadata()!
-    let nftTypeId = (metadata!["nftTypeId"]! as! String)
+    let nftInfo = nft!
+
+    let metadata = nftInfo.getMetadata()!
+    let nftTypeId = (metadata["nftTypeId"]! as! String)
 
     let externalViewUrl = "https://nft.now.gg/nft/".concat(nftTypeId)
 
     return NFTData(
         contract: contract,
-        id: nft!.id,
-        uuid: nft!.uuid,
-        title: metadata["title"] as? String,
-        description: metadata["description"] as? String,
+        id: nftInfo.id,
+        uuid: nftInfo.uuid,
+        title: metadata["title"]! as? String,
+        description: metadata["description"]! as? String,
         external_domain_view_url: externalViewUrl,
         token_uri: nil,
         media: [

@@ -2636,9 +2636,10 @@ pub fun getNowggNFT(owner: PublicAccount, id: UInt64): NFTData? {
     if col == nil { return nil }
 
     let nft = col!.borrowNowggNFT(id: id)
+
     if nft == nil { return nil }
 
-    let metadata = nft!.getMetadata()
+    let metadata = nft!.getMetadata()!
     let nftTypeId = (metadata!["nftTypeId"]! as! String)
 
     let externalViewUrl = "https://nft.now.gg/nft/".concat(nftTypeId)
@@ -2647,22 +2648,21 @@ pub fun getNowggNFT(owner: PublicAccount, id: UInt64): NFTData? {
         contract: contract,
         id: nft!.id,
         uuid: nft!.uuid,
-        title: metadata!["title"] as? String,
-        description: metadata!["description"] as? String,
+        title: metadata["title"] as? String,
+        description: metadata["description"] as? String,
         external_domain_view_url: externalViewUrl,
         token_uri: nil,
         media: [
-            NFTMedia(uri: metadata!["displayUrl"]! as? String, mimetype: (metadata!["displayUrlMediaType"]! as? String)),
-            NFTMedia(uri: metadata!["contentUrl"]! as? String, mimetype: (metadata!["contentType"]! as? String))
-
+            NFTMedia(uri: metadata["displayUrl"]! as? String, mimetype: (metadata["displayUrlMediaType"]! as? String)),
+            NFTMedia(uri: metadata["contentUrl"]! as? String, mimetype: (metadata["contentType"]! as? String))
         ],
         metadata: {
-            "client_name": metadata!["clientName"],
-            "nft_type_id": metadata!["nftTypeId"],
-            "creator_name": metadata!["creatorName"],
-            "client_id": metadata!["clientId"],
-            "max_count": metadata!["maxCount"],
-            "copy_number": metadata!["copyNumber"]
+            "client_name": metadata["clientName"],
+            "nft_type_id": metadata["nftTypeId"],
+            "creator_name": metadata["creatorName"],
+            "client_id": metadata["clientId"],
+            "max_count": metadata["maxCount"],
+            "copy_number": metadata["copyNumber"]
         }
     )
 }

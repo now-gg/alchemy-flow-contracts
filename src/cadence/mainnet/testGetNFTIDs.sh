@@ -268,7 +268,7 @@ DGD_NFT)
 
 NowggNFT)
   echo "NowggNFT"
-  flow scripts execute getNFTIDs.cdc 0x67f204260b5c9a6b --network mainnet
+  flow scripts execute getNFTIDs.cdc 0xb759c620b47621d1 --network mainnet
   ;;
 
 GogoroCollectible)

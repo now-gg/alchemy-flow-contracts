@@ -32,7 +32,7 @@ flow scripts execute getNFTs.cdc --args-json '[{ "type": "Address", "value": "0x
   ;;
 NowggNFT)
   echo "NowggNFT"
-  flow scripts execute getNFTs.cdc --args-json '[{ "type": "Address", "value": "0x797ccef3c80b8d89" }, { "type": "Dictionary", "value": [{ "key": { "type": "String", "value": "NowggNFT" }, "value": { "type": "Array", "value": [{ "type": "UInt64", "value": "15194" }] } }] }]' --network mainnet
+  flow scripts execute getNFTs.cdc --args-json '[{ "type": "Address", "value": "0x8cfe54881e5edd9b" }, { "type": "Dictionary", "value": [{ "key": { "type": "String", "value": "NowggNFT" }, "value": { "type": "Array", "value": [{ "type": "UInt64", "value": "15177" }] } }] }]' --network mainnet
   ;;
 GogoroCollectible)
   echo "GogoroCollectible"

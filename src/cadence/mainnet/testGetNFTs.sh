@@ -268,7 +268,7 @@ DGD_NFT)
 
 NowggNFT)
   echo "NowggNFT"
-  flow scripts execute getNFTs.cdc --args-json '[{ "type": "Address", "value": "0x67f204260b5c9a6b" }, { "type": "Dictionary", "value": [{ "key": { "type": "String", "value": "NowggNFT" }, "value": { "type": "Array", "value": [{ "type": "UInt64", "value": "26458" }] } }] }]' --network mainnet
+  flow scripts execute getNFTs.cdc --args-json '[{ "type": "Address", "value": "0xb759c620b47621d1" }, { "type": "Dictionary", "value": [{ "key": { "type": "String", "value": "NowggNFT" }, "value": { "type": "Array", "value": [{ "type": "UInt64", "value": "26514" }] } }] }]' --network mainnet
   ;;
 
 GogoroCollectible)
